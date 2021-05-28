@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 // Anotaciones de Lombok
 @Getter
@@ -50,19 +51,7 @@ public class Cliente {
     @JoinColumn(name = "USUARIO_ID")
     private Usuario usuario;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cuenta> cuentas;
 
 }
