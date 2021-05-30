@@ -19,18 +19,19 @@ public class TransaccionesController {
     @Autowired
     private TransaccionesService transaccionesService;
 
-    @RequestMapping(value = "/retirar", method = RequestMethod.POST, headers = "Accept=*/*", produces = "application/json")
-    public ResponseEntity<String> retirar(@RequestBody RetiroDTO retiroDTO){
-        return new ResponseEntity<String>(transaccionesService.retirar(retiroDTO), HttpStatus.OK) ;
+    @CrossOrigin
+    @RequestMapping(value = "/retirar", method = RequestMethod.POST)
+    public String retirar(@RequestBody RetiroDTO retiroDTO){
+        return transaccionesService.retirar(retiroDTO);
     }
 
-
-    @RequestMapping(value = "/consignar", method = RequestMethod.POST, headers = "Accept=*/*", produces = "application/json")
-    public ResponseEntity<String> consignar(@RequestBody ConsignacionDTO consignacionDTO){
-        return new ResponseEntity<String>(transaccionesService.consignar(consignacionDTO), HttpStatus.OK) ;
+    @CrossOrigin
+    @RequestMapping(value = "/consignar", method = RequestMethod.POST)
+    public String consignar(@RequestBody ConsignacionDTO consignacionDTO){
+        return transaccionesService.consignar(consignacionDTO);
     }
 
-
+    @CrossOrigin
     @RequestMapping(value = "/saldos/{documentoCliente}", method = RequestMethod.GET, headers = "Accept=*/*", produces = "application/json")
     public ResponseEntity<List<CuentaDTO>> consultarSaldos(@PathVariable(value = "documentoCliente") Long documentoCliente){
         return new ResponseEntity<List<CuentaDTO>>(transaccionesService.consultarSaldo(documentoCliente), HttpStatus.OK);

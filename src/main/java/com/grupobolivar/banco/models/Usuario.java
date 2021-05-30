@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 // Anotaciones de JPA
 @Entity
 @Table(name = "USUARIOS")
